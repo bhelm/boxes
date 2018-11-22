@@ -79,10 +79,11 @@ class FlexBox5(Boxes):
         self.edges["X"](self.c4, z + 2 * t)
 
         self.edges["e"](x - r + d)
-        self.corner(90)
+        self.corner(90, t)
+
         #front endge
-        self.edges["B"](z + 2 * t)
-        self.corner(90)
+        self.edges["B"](z)
+        self.corner(90, t)
 
         self.edges["e"](x - r + d)
         #living hinge other side

@@ -370,22 +370,8 @@ class LatchSlotEdge(BaseEdge):
 
         latchwidth = 13
 
-        #self.boxes.ctx.save()
-
-        self.corner(-90, 0)
-        self.corner(90, self.boxes.thickness)
-
-        self.edge(length-2*self.boxes.thickness)
-        self.corner(90, self.boxes.thickness)
-        self.corner(-90, 0)
-
-        self.boxes.ctx.save()
-        #self.boxes.moveTo(30, 10, 90)
-
-        self.boxes.rectangularHole(-length/2, self.boxes.thickness*0.5, latchwidth, self.boxes.thickness)
-
-        self.ctx.restore()
-        self.ctx.move_to(0, 0)
+        self.edge(length)
+        self.boxes.rectangularHole(-length/2, self.boxes.thickness*1.5, latchwidth, self.boxes.thickness)
 
     def spacing(self):
         return 0
