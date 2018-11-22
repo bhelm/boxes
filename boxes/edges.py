@@ -337,7 +337,7 @@ class LatchEdge(BaseEdge):
         self.corner(270, self.bottomradius)
         self.edge(self.bottomradius+self.boxes.burn)
         self.corner(-90)
-        self.edge(self.latchheight*0.6 + self.boxes.thickness - self.bottomradius/2)
+        self.edge(self.latchheight*0.6 + self.boxes.thickness*0.66 - self.bottomradius/2)
         self.corner(-25, topradius)
         self.corner(180+25, topradius)
         self.edge(self.latchheight * 0.8)
@@ -349,7 +349,7 @@ class LatchEdge(BaseEdge):
         self.edge(self.latchheight * 0.8)
         self.corner(180 + 25, topradius)
         self.corner(-25, topradius)
-        self.edge(self.latchheight * 0.6 + self.boxes.thickness - self.bottomradius/2)
+        self.edge(self.latchheight * 0.6 + self.boxes.thickness*0.66 - self.bottomradius/2)
         self.corner(-90)
         self.edge(self.bottomradius + self.boxes.burn)
         self.corner(270, self.bottomradius)
@@ -369,9 +369,10 @@ class LatchSlotEdge(BaseEdge):
     def __call__(self, length, **kw):
 
         latchwidth = 13
+        play = 1
 
         self.edge(length)
-        self.boxes.rectangularHole(-length/2, self.boxes.thickness*1.5, latchwidth, self.boxes.thickness)
+        self.boxes.rectangularHole(-length/2, self.boxes.thickness*1.5, latchwidth+play, self.boxes.thickness*1.2)
 
     def spacing(self):
         return 0

@@ -38,7 +38,7 @@ class FlexBox5(Boxes):
             "--radius", action="store", type=float, default=10.0,
             help="radius of the lids living hinge")
         self.argparser.add_argument(
-            "--c", action="store", type=float, default=1.0,
+            "--c", action="store", type=float, default=9.0,
             dest="d", help="clearance of the lid")
 
     def flexBoxSide(self, x, y, r, callback=None, move=None):
@@ -67,12 +67,12 @@ class FlexBox5(Boxes):
         t = self.thickness
 
         tw = x + y - 2*r + self.c4 + 2*t + d
-        th = z + 2*t + 2*d
+        th = z + 2*t
 
         if self.move(tw, th, move, True):
             return
 
-        self.moveTo(t, 2*d)
+        self.moveTo(t, 0)
 
         self.edges["F"](y - r, False)
         #living hinge
