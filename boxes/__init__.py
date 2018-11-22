@@ -414,6 +414,8 @@ class Boxes:
         self.edges = {}
         self.addPart(edges.Edge(self, None))
         self.addPart(edges.OutSetEdge(self, None))
+        self.addPart(edges.LatchEdge(self, None))
+        self.addPart(edges.LatchSlotEdge(self, None))
         edges.GripSettings(self.thickness).edgeObjects(self)
 
         # Finger joints

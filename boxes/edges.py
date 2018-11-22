@@ -316,6 +316,80 @@ class Edge(BaseEdge):
         else:
             self.edge(length, tabs=2)
 
+class LatchEdge(BaseEdge):
+    """Edge with a bigger clicking latch"""
+    char = 'b'
+    description = "Latch Edge"
+    positive = False
+    latchwidth = 13
+    latchheight = 15
+    bottomradius = 1.2
+
+    def __call__(self, length, **kw):
+
+        topradius = (self.latchwidth/13*2.5*1.10325) #radius needs to be abit larger so the full part equals latchwidth
+        centralloopradius = (self.latchwidth/13*1.5)
+        side = (length-self.latchwidth)/2-self.boxes.burn
+
+        self.edge(side)
+        self.corner(90)
+        self.edge(self.latchheight*0.6)
+        self.corner(270, self.bottomradius)
+        self.edge(self.bottomradius+self.boxes.burn)
+        self.corner(-90)
+        self.edge(self.latchheight*0.6 + self.boxes.thickness - self.bottomradius/2)
+        self.corner(-25, topradius)
+        self.corner(180+25, topradius)
+        self.edge(self.latchheight * 0.8)
+
+        # cental bottom loop
+        self.corner(-180, centralloopradius)
+
+        #reverse
+        self.edge(self.latchheight * 0.8)
+        self.corner(180 + 25, topradius)
+        self.corner(-25, topradius)
+        self.edge(self.latchheight * 0.6 + self.boxes.thickness - self.bottomradius/2)
+        self.corner(-90)
+        self.edge(self.bottomradius + self.boxes.burn)
+        self.corner(270, self.bottomradius)
+        self.edge(self.latchheight * 0.6)
+        self.corner(90)
+        self.edge(side)
+
+    def spacing(self):
+        return self.boxes.thickness + (self.latchwidth/13*2.5*2) + 0.5
+
+class LatchSlotEdge(BaseEdge):
+    """counterpart for bigger clicking latch"""
+    char = 'B'
+    description = "Latch Edge"
+    positive = False
+
+    def __call__(self, length, **kw):
+
+        latchwidth = 13
+
+        #self.boxes.ctx.save()
+
+        self.corner(-90, 0)
+        self.corner(90, self.boxes.thickness)
+
+        self.edge(length-2*self.boxes.thickness)
+        self.corner(90, self.boxes.thickness)
+        self.corner(-90, 0)
+
+        self.boxes.ctx.save()
+        #self.boxes.moveTo(30, 10, 90)
+
+        self.boxes.rectangularHole(-length/2, self.boxes.thickness*0.5, latchwidth, self.boxes.thickness)
+
+        self.ctx.restore()
+        self.ctx.move_to(0, 0)
+
+    def spacing(self):
+        return 0
+
 
 class OutSetEdge(Edge):
     """Straight edge out set by one thickness"""

@@ -1,0 +1,1 @@
+/home/raw/boxes/scripts/boxes --generator=FlexBox5  --FingerJoint_width=2 --FingerJoint_finger=1 --FingerJoint_space=1 --burn=0.1 --radius=15 --x=50 --y=37 --z=50 --thickness=3 --format=svg --debug=false --reference=0 --output=test.svg && vivaldi-stable ./test.svg
